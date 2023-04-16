@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import styles from './styles.module.css';
 
-const advertisements = [
+const adverts = [
     {
       content:
         "Nos hace mucha ilusión anunciar la fecha del ESTRENO de 'Eso que tu me das', documental con la última entrevista a Pau Donés. 30 DE SEPTIEMBRE, en cines de toda España. @WarnerBrosSpain Y este es el cartel definitivo, con algunas frases de críticas que ya se han publicado.",
@@ -24,10 +24,10 @@ const styleInline = {
 };
 
 
-const AdvertisementsPage = () => {
+const AdvertsPage = () => {
   const theme = 'dark';
   const className = classNames(
-    'advertisementsPage',
+    'advertsPage',
     {
       light: theme === 'light',
       dark: theme === 'dark',
@@ -38,14 +38,14 @@ const AdvertisementsPage = () => {
   return (
     <div
       //   className={className}
-      className={styles.advertisementsPage}
+      className={styles.advertsPage}
       //   style={{
       //     backgroundColor: theme === 'light' ? 'lightblue' : 'darkblue',
       //   }}
     >
       <ul>
-        {advertisements.map(advertisement => (
-          <li key={advertisement.id}>{advertisement.content}</li>
+        {adverts.map(adverts => (
+          <li key={adverts.id}>{adverts.content}</li>
         ))}
       </ul>
     </div>
@@ -53,4 +53,4 @@ const AdvertisementsPage = () => {
 };
 
 
-export default AdvertisementsPage;
+export default AdvertsPage;
