@@ -1,3 +1,7 @@
+import classNames from 'classnames';
+
+import styles from './styles.module.css';
+
 const advertisements = [
     {
       content:
@@ -14,18 +18,39 @@ const advertisements = [
       id: 2,
     },
   ];
-  
+
+const styleInline = {
+  backgroundColor: 'lightblue',
+};
+
 
 const AdvertisementsPage = () => {
-    return (
-        <div className="advertisementsPage">
-            <ul>
-                {advertisements.map(advertisement => (
-                    <li key={advertisement.id}>{advertisement.content}</li>
-                ))}
-            </ul>
-        </div>
-    )
-}
+  const theme = 'dark';
+  const className = classNames(
+    'advertisementsPage',
+    {
+      light: theme === 'light',
+      dark: theme === 'dark',
+    },
+    'otherclass',
+  );
+
+  return (
+    <div
+      //   className={className}
+      className={styles.advertisementsPage}
+      //   style={{
+      //     backgroundColor: theme === 'light' ? 'lightblue' : 'darkblue',
+      //   }}
+    >
+      <ul>
+        {advertisements.map(advertisement => (
+          <li key={advertisement.id}>{advertisement.content}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 
 export default AdvertisementsPage;

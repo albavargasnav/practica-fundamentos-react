@@ -1,0 +1,11 @@
+.advertisementsPage {
+  color: red;
+}
+
+.advertisementsPage.light {
+  background-color: lightblue;
+}
+
+.advertisementsPage.dark {
+  background-color: darkblue;
+}
