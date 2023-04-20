@@ -4,7 +4,7 @@ import { login } from './service';
 
 function LoginPage({ onLogin }) {
     const [credentials, setCredentials] = useState({
-        username: '',
+        email: '',
         password: '',
     });
 
@@ -31,7 +31,7 @@ function LoginPage({ onLogin }) {
     });
   };
 
-  const buttonDisabled = !credentials.username || !credentials.password;
+  const buttonDisabled = !credentials.email || !credentials.password;
 
   return (
     <div>
@@ -39,7 +39,7 @@ function LoginPage({ onLogin }) {
       <form onSubmit={handleSubmit}>
       <input
           type="text"
-          name="username"
+          name="email"
           onChange={handleChange}
           value={credentials.username}
         />
