@@ -1,15 +1,15 @@
 import classNames from 'classnames';
-
 import styles from './styles.module.css';
-
 import { useEffect, useState } from 'react';
 import { getLatestAdverts } from './service';
+import Button from '../shared/Button';
+import { logout } from '../auth/service';
 
 const styleInline = {
   backgroundColor: 'lightblue',
 };
 
-const AdvertsPage = () => {
+const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
@@ -26,6 +26,12 @@ const AdvertsPage = () => {
     'otherclass',
   );
 
+  const handleClick = async () => {
+    await logout();
+    onLogout();
+  };
+
+
   return (
     <div
       //   className={className}
@@ -34,6 +40,7 @@ const AdvertsPage = () => {
       //     backgroundColor: theme === 'light' ? 'lightblue' : 'darkblue',
       //   }}
     >
+       <Button onClick={handleClick}>Logout</Button>
       <ul>
         {adverts.map(adverts => (
           <li key={adverts.id}>{adverts.content}</li>

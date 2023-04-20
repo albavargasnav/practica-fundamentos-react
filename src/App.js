@@ -1,18 +1,26 @@
+import AdvertsPage from './components/adverts/AdvertsPage';
 import './App.css';
 import Button from './components/shared/Button';
 import LoginPage from './components/auth/LoginPage';
 import { useState } from 'react';
 
-function App() {
-  const [isLogged, setIsLogged] = useState(false);
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = useState(isInitiallyLogged);
 
   const handleLogin = () => {
     setIsLogged(true);
   };
 
+  const handleLogout = () => {
+    setIsLogged(false);
+  };
 
   return <div className="App">
-     {isLogged ? <TweetsPage /> : <LoginPage onLogin={handleLogin} />}
+     {isLogged ? (
+        <AdvertsPage onLogout={handleLogout} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
       {/* <Button variant="secondary" onClick={event => console.log(event)}>
 
         {/* Click me!

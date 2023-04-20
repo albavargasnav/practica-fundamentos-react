@@ -27,7 +27,7 @@ function LoginPage({ onLogin }) {
 
     setCredentials({
       ...credentials,
-      [event.target.value]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -41,14 +41,12 @@ function LoginPage({ onLogin }) {
           type="text"
           name="username"
           onChange={handleChange}
-          autoComplete={false}
           value={credentials.username}
         />
         <input
           type="password"
           name="password"
           onChange={handleChange}
-          autoComplete={false}
           value={credentials.password}
         />
         <Button type="submit" variant="primary" disabled={buttonDisabled}>
