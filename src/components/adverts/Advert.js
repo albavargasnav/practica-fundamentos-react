@@ -1,11 +1,11 @@
 import React from 'react';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+//import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-import LikeButton from './LikeButton';
+//import LikeButton from './LikeButton';
 import Photo from '../shared/Photo';
 import './Advert.css';
 
-const Advert = ({ content, updatedAt, user, likes }) => {
+const Advert = ({id}) => {
   return (
     <article className="advert bordered">
       <div className="left">
@@ -13,21 +13,9 @@ const Advert = ({ content, updatedAt, user, likes }) => {
       </div>
       <div className="right">
         <div className="advert-header">
-          <span className="advert-name">{user.name}</span>
-          <span className="advert-username">{user.username}</span>
+        <span className="advert-name">{id.tags}</span>
+      <span className="advert-username">{id}</span>
           <span className="advert-separator">·</span>
-          <time dateTime={updatedAt}>
-            {formatDistanceToNow(new Date(updatedAt))}
-          </time>
-        </div>
-        <div>
-          {content}
-          <div className="advert-actions">
-            <LikeButton
-              onLike={event => console.log(event)}
-              likes={likes.length}
-            />
-          </div>
         </div>
       </div>
     </article>
