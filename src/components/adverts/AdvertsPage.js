@@ -1,13 +1,15 @@
-import classNames from 'classnames';
-import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
 import { getLatestAdverts } from './service';
 import Button from '../shared/Button';
 import Layout from '../layout/Layout';
+import Advert from './Advert';
 
-const styleInline = {
-  backgroundColor: 'lightblue',
-};
+const EmptyList = () => (
+  <div style={{ textAlign: 'center' }}>
+    <p>Be the first one!</p>
+    <Button variant="primary">Create Advert</Button>
+  </div>
+);
 
 const AdvertsPage = props => {
   const [adverts, setAdverts] = useState([]);
@@ -16,33 +18,17 @@ const AdvertsPage = props => {
     getLatestAdverts().then(adverts => setAdverts(adverts));
   }, []);
 
-  const theme = 'dark';
-  const className = classNames(
-    'advertsPage',
-    {
-      light: theme === 'light',
-      dark: theme === 'dark',
-    },
-    'otherclass',
-  );
-
   return (
     <Layout title="What's going on..." {...props}>
-      <div
-        //   className={className}
-        className={styles.advertsPage}
-        //   style={{
-        //     backgroundColor: theme === 'light' ? 'lightblue' : 'darkblue',
-        //   }}
-      >
+      <div>
         {!!adverts.length ? (
           <ul>
             {adverts.map(advert => (
-              <li key={advert.id}>{advert.name}</li>
+              <Advert key={advert.id} {...advert} />
             ))}
           </ul>
         ) : (
-          <Button variant="primary">Be the first one...</Button>
+          <EmptyList />
         )}
       </div>
     </Layout>

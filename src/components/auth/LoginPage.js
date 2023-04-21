@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Button from '../shared/Button';
+import FormField from '../shared/FormField';
 import { login } from './service';
+import './LoginPage.css';
 
 function LoginPage({ onLogin }) {
     const [credentials, setCredentials] = useState({
@@ -18,12 +20,6 @@ function LoginPage({ onLogin }) {
   };
 
   const handleChange = event => {
-    // if (event.target.name === 'username') {
-    //   setCredentials({ ...credentials, username: event.target.value });
-    // }
-    // if (event.target.name === 'password') {
-    //   setCredentials({ ...credentials, password: event.target.value });
-    // }
 
     setCredentials({
       ...credentials,
@@ -34,31 +30,42 @@ function LoginPage({ onLogin }) {
   const buttonDisabled = !credentials.email || !credentials.password;
 
   return (
-    <div>
-      <h1>Log into Adverts</h1>
+    <div className="loginPage">
+      <h1 className="loginPage-title">Log in to Adverts</h1>
       <form onSubmit={handleSubmit}>
-      <input
+      <FormField
           type="text"
           name="email"
+          label="phone, email or username"
+          className="loginForm-field"
           onChange={handleChange}
           value={credentials.username}
         />
-        <input
+        <FormField
           type="password"
           name="password"
+          label="password"
+          className="loginForm-field"
           onChange={handleChange}
           value={credentials.password}
         />
-        <Button type="submit" variant="primary" disabled={buttonDisabled}>
+         <Button
+          type="submit"
+          variant="primary"
+          className="loginForm-submit"
+          disabled={buttonDisabled}
+        >
           Log in
         </Button>
-        <input
+         {/* <FormField
           type="file"
           name="photo"
+          label="password"
+          className="loginForm-field"
           onChange={event => {
             console.log(event.target.files[0]);
           }}
-        />
+        /> */}
       </form>
     </div>
   );
