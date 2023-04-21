@@ -3,14 +3,13 @@ import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
 import { getLatestAdverts } from './service';
 import Button from '../shared/Button';
-import { logout } from '../auth/service';
 import Layout from '../layout/Layout';
 
 const styleInline = {
   backgroundColor: 'lightblue',
 };
 
-const AdvertsPage = ({ onLogout }) => {
+const AdvertsPage = props => {
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
@@ -27,14 +26,8 @@ const AdvertsPage = ({ onLogout }) => {
     'otherclass',
   );
 
-  const handleClick = async () => {
-    await logout();
-    onLogout();
-  };
-
-
   return (
-    <Layout title="What's going on...">
+    <Layout title="What's going on..." {...props}>
       <div
         //   className={className}
         className={styles.advertsPage}
@@ -45,7 +38,7 @@ const AdvertsPage = ({ onLogout }) => {
         {!!adverts.length ? (
           <ul>
             {adverts.map(advert => (
-              <li key={advert.id}>{advert.content}</li>
+              <li key={advert.id}>{advert.name}</li>
             ))}
           </ul>
         ) : (

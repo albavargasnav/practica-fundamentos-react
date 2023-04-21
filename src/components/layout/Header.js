@@ -1,8 +1,14 @@
 import Button from '../shared/Button';
 
 import logo, { ReactComponent as Icon } from '../../assets/pageicon.svg';
+import { logout } from '../auth/service';
 
-const Header = () => {
+const Header = ({ isLogged, onLogout }) => {
+  const handleLogoutClick = async () => {
+    await logout();
+    onLogout();
+  };
+
   return (
     <header>
       <div>
@@ -10,7 +16,11 @@ const Header = () => {
         <Icon width="32" height="32" />
       </div>
       <nav>
-        <Button variant="primary">Login</Button>
+      {isLogged ? (
+          <Button onClick={handleLogoutClick}>Logout</Button>
+        ) : (
+          <Button variant="primary">Login</Button>
+        )}
       </nav>
     </header>
   );

@@ -1,6 +1,5 @@
 import AdvertsPage from './components/adverts/AdvertsPage';
 import './App.css';
-import Button from './components/shared/Button';
 import LoginPage from './components/auth/LoginPage';
 import { useState } from 'react';
 import NewAdvertPage from './components/adverts/NewAdvertPage';
@@ -19,22 +18,12 @@ function App({ isInitiallyLogged }) {
   return <div className="App">
      {isLogged ? (
         <>
-        <AdvertsPage onLogout={handleLogout} />
-        <NewAdvertPage />
+        <AdvertsPage onLogout={handleLogout} isLogged={isLogged} />
+          <NewAdvertPage onLogout={handleLogout} isLogged={isLogged} />
       </>
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
-      {/* <Button variant="secondary" onClick={event => console.log(event)}>
-
-        {/* Click me!
-      </Button>
-      <Button variant="primary" onClick={event => console.log(event)}>
-        Click me!
-      </Button>
-      <Button variant="primary" disabled onClick={event => console.log(event)}>
-        Click me!
-      </Button> */}
   </div>;
 }
 
