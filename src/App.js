@@ -3,6 +3,7 @@ import './App.css';
 import Button from './components/shared/Button';
 import LoginPage from './components/auth/LoginPage';
 import { useState } from 'react';
+import NewAdvertPage from './components/adverts/NewAdvertPage';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -17,7 +18,10 @@ function App({ isInitiallyLogged }) {
 
   return <div className="App">
      {isLogged ? (
+        <>
         <AdvertsPage onLogout={handleLogout} />
+        <NewAdvertPage />
+      </>
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
