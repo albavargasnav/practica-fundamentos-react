@@ -24,7 +24,7 @@ const AdvertsPage = props => {
         {!!adverts.length ? (
           <ul>
             {adverts.map(advert => (
-              <Advert key={advert.id}>title={advert.name} price={advert.tags} ...</Advert>
+              <Advert key={advert.id} advert={advert}></Advert>
             ))}
           </ul>
         ) : (

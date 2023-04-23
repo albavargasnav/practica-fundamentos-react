@@ -5,7 +5,7 @@ import React from 'react';
 import Photo from '../shared/Photo';
 import './Advert.css';
 
-const Advert = ({id}) => {
+const Advert = ({advert}) => {
   return (
     <article className="advert bordered">
       <div className="left">
@@ -13,8 +13,8 @@ const Advert = ({id}) => {
       </div>
       <div className="right">
         <div className="advert-header">
-        <span className="advert-name">{id.tags}</span>
-      <span className="advert-username">{id}</span>
+        <span className="advert-name">{advert.id}</span>
+      <span className="advert-username">{advert.name}</span>
           <span className="advert-separator">·</span>
         </div>
       </div>
