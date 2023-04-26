@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from './context';
+import { useAuth } from './context';
 
 
 const RequireAuth = ({ children }) => {
-  const { isLogged } = useContext(AuthContext);
+  const { isLogged } = useAuth();
   const location = useLocation();
 
   if (!isLogged) {

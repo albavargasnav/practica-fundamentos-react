@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Button from '../shared/Button';
 import FormField from '../shared/FormField';
 import { login } from './service';
 import './LoginPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from './context';
+import { useAuth } from './context';
 
 function LoginPage() {
-  const { onLogin } = useContext(AuthContext);
+  const { onLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
