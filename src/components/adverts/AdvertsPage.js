@@ -4,19 +4,25 @@ import Button from '../shared/Button';
 import Layout from '../layout/Layout';
 import Advert from './Advert';
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Be the first one!</p>
     <Button as={Link} variant="primary" to="/tweets/new">
-      Create tweet
+      Create advert
     </Button>
   </div>
 );
 
 const AdvertsPage = () => {
+  const isMounted = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
+
+  useEffect(() => {
+    isMounted.current = true;
+  }, []);
 
   useEffect(() => {
     async function fetchData() {

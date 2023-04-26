@@ -5,11 +5,19 @@ import { login } from './service';
 import './LoginPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './context';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 function LoginPage() {
   const { onLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const renders = useRef(0);
+
+  useEffect(() => {
+    renders.current++;
+    console.log(renders.current, ' times rendered');
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
     const [credentials, setCredentials] = useState({
@@ -61,6 +69,7 @@ function LoginPage() {
           className="loginForm-field"
           onChange={handleChange}
           value={credentials.username}
+          autofocus
         />
         <FormField
           type="password"

@@ -5,8 +5,6 @@ import NewAdvertPage from './components/adverts/NewAdvertPage';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AdvertPage from './components/adverts/AdvertPage';
 import RequireAuth from './components/auth/RequireAuth';
-import { AuthContext } from './components/auth/context';
-
 
 
 function App() {
