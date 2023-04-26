@@ -3,8 +3,11 @@ import Button from '../shared/Button';
 import FormField from '../shared/FormField';
 import { login } from './service';
 import './LoginPage.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function LoginPage({ onLogin }) {
+  const navigate = useNavigate();
+  const location = useLocation();
     const [credentials, setCredentials] = useState({
         email: '',
         password: '',
@@ -17,6 +20,11 @@ function LoginPage({ onLogin }) {
 
     // Estoy logueado
     onLogin();
+
+     // Redirecciona al pathname
+     const to = location.state?.from?.pathname || '/';
+
+     navigate(to);
   };
 
   const handleChange = event => {

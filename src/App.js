@@ -5,6 +5,7 @@ import { useState } from 'react';
 import NewAdvertPage from './components/adverts/NewAdvertPage';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import AdvertPage from './components/adverts/AdvertPage';
+import RequireAuth from './components/auth/RequireAuth';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -30,7 +31,11 @@ function App({ isInitiallyLogged }) {
         />
         <Route
           path="/adverts/new"
-          element={<NewAdvertPage onLogout={handleLogout} isLogged={isLogged} />}
+          element={
+            <RequireAuth isLogged={isLogged}>
+              <NewAdvertPage onLogout={handleLogout} isLogged={isLogged} />
+            </RequireAuth>
+          }
         />
         <Route path="/" element={<Navigate to="/adverts" />} />
         <Route path="/404" element={<div>404 | Not found page</div>} />

@@ -3,11 +3,14 @@ import { getLatestAdverts } from './service';
 import Button from '../shared/Button';
 import Layout from '../layout/Layout';
 import Advert from './Advert';
+import { Link } from 'react-router-dom';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Be the first one!</p>
-    <Button variant="primary">Create Advert</Button>
+    <Button as={Link} variant="primary" to="/tweets/new">
+      Create tweet
+    </Button>
   </div>
 );
 
@@ -24,7 +27,11 @@ const AdvertsPage = props => {
         {!!adverts.length ? (
           <ul>
             {adverts.map(advert => (
-              <Advert key={advert.id} advert={advert}></Advert>
+              <li key={advert.id}>
+                <Link to={`/adverts/${advert.id}`}>
+                  <Advert key={advert.id} advert={advert} />
+                </Link>
+              </li>
             ))}
           </ul>
         ) : (
