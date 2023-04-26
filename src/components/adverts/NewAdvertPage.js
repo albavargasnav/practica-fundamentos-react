@@ -5,9 +5,9 @@ import Textarea from '../shared/Textarea';
 
 import './NewAdvertPage.css';
 
-const NewAdvertPage = props => {
+const NewAdvertPage = () => {
   return (
-    <Layout title="What are you thinking?" {...props}>
+    <Layout title="What are you thinking?">
       <div className="newAdvertPage bordered">
         <div className="left">
           <Photo />

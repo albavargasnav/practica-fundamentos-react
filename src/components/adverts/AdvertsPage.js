@@ -14,7 +14,7 @@ const EmptyList = () => (
   </div>
 );
 
-const AdvertsPage = props => {
+const AdvertsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
 
@@ -31,7 +31,7 @@ const AdvertsPage = props => {
   }, []);
 
   return (
-    <Layout title="What's going on..." {...props}>
+    <Layout title="What's going on...">
       {isLoading ? (
         <div>Loading...</div>
       ) : (
