@@ -15,29 +15,38 @@ const EmptyList = () => (
 );
 
 const AdvertsPage = props => {
+  const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
-    getLatestAdverts().then(adverts => setAdverts(adverts));
+    setIsLoading(true);
+    getLatestAdverts().then(adverts => {
+      setAdverts(adverts);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
     <Layout title="What's going on..." {...props}>
-      <div>
-        {!!adverts.length ? (
-          <ul>
-            {adverts.map(advert => (
-              <li key={advert.id}>
-                <Link to={`/adverts/${advert.id}`}>
-                  <Advert key={advert.id} advert={advert} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <EmptyList />
-        )}
-      </div>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          {!!adverts.length ? (
+            <ul>
+              {adverts.map(advert => (
+                <li key={advert.id}>
+                  <Link to={`/adverts/${advert.id}`}>
+                    <Advert key={advert.id} advert={advert} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <EmptyList />
+          )}
+        </div>
+      )}
     </Layout>
   );
 };

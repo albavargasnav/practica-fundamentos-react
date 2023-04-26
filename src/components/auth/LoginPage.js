@@ -8,23 +8,33 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function LoginPage({ onLogin }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
     const [credentials, setCredentials] = useState({
         email: '',
         password: '',
     });
 
+    const resetError = () => {
+      setError(null);
+    };
+
   const handleSubmit = async event => {
     event.preventDefault();
-
-    await login(credentials);
-
-    // Estoy logueado
-    onLogin();
-
-     // Redirecciona al pathname
-     const to = location.state?.from?.pathname || '/';
-
-     navigate(to);
+    resetError();
+    setIsLoading(true);
+    try {
+      await login(credentials);
+      setIsLoading(false);
+      // Logged in
+      onLogin();
+      // Redirect to pathname
+      const to = location.state?.from?.pathname || '/';
+      navigate(to);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+    }
   };
 
   const handleChange = event => {
@@ -35,7 +45,8 @@ function LoginPage({ onLogin }) {
     });
   };
 
-  const buttonDisabled = !credentials.email || !credentials.password;
+  const buttonDisabled =
+  isLoading || !credentials.email || !credentials.password;
 
   return (
     <div className="loginPage">
@@ -75,6 +86,11 @@ function LoginPage({ onLogin }) {
           }}
         /> */}
       </form>
+      {error && (
+        <div onClick={resetError} className="loginPage-error">
+          {error.message}
+        </div>
+      )}
     </div>
   );
 }
