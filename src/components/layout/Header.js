@@ -23,13 +23,14 @@ const Header = ({ className, isLogged, onLogout }) => {
       <nav className="header-nav">
       <NavLink
           to="/adverts/new"
+          className="header-nav-item"
           // className={({ isActive }) => (isActive ? 'selected' : '')}
           // style={({ isActive }) => (isActive ? { color: 'red' } : null)}
         >
           New Advert
         </NavLink>{' '}
         |
-        <NavLink to="/adverts" end>
+        <NavLink to="/adverts" className="header-nav-item" end>
           See latest adverts
         </NavLink>
       {isLogged ? (

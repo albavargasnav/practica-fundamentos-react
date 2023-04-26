@@ -24,6 +24,12 @@
     flex: 1;
     justify-content: flex-end;
   }
+
+  /* Barra de New Advert y See latest adverts, quitar a si no se necesita */
+  .header-nav > .header-nav-item {
+    align-self: center;
+    margin-left: 8px;
+  }
   
   .header-nav .active {
     color: green;
