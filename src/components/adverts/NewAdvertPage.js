@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
@@ -10,6 +10,26 @@ import { useNavigate } from 'react-router-dom';
 
 const MIN_CHARACTERS = 5;
 const MAX_CHARACTERS = 140;
+
+
+//--------------revisar despues si utilizarlo 
+const fib = function (n) {
+  if (n <= 1) return n;
+
+  return fib(n - 1) + fib(n - 2);
+};
+
+const HeavyComponent = ({ value }) => {
+  const result = fib(value);
+
+  return (
+    <div>
+      Fibonacci({value}) = {result}
+    </div>
+  );
+};
+const MemoizedHeavyComponent = memo(HeavyComponent);
+//------end------revisar despues si utilizarlo  incluye quitar memorized abajo del form--linea 88--
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
@@ -65,6 +85,7 @@ const NewAdvertPage = () => {
               </Button>
             </div>
           </form>
+          <MemoizedHeavyComponent value={37} />
         </div>
       </div>
     </Layout>
