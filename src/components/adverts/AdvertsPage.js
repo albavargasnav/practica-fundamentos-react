@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getLatestAdverts } from './service';
 import Button from '../shared/Button';
 import Layout from '../layout/Layout';
@@ -17,6 +17,7 @@ const EmptyList = () => (
 
 const AdvertsPage = () => {
   const isMounted = useRef(false);
+  const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
 
@@ -36,6 +37,10 @@ const AdvertsPage = () => {
     fetchData();
   }, []);
 
+  const filteredAdverts = adverts.filter(advert =>
+    (advert.name ?? '').toUpperCase().startsWith(query.toUpperCase()),
+  );
+
   return (
     <Layout title="What's going on...">
       {isLoading ? (
@@ -43,8 +48,20 @@ const AdvertsPage = () => {
       ) : (
         <div>
           {!!adverts.length ? (
+            <>
+            <div>
+              <label>
+                Search:{' '}
+                <input
+                  type="text"
+                  style={{ borderWidth: 1 }}
+                  value={query}
+                  onChange={event => setQuery(event.target.value)}
+                />
+              </label>
+            </div>
             <ul>
-              {adverts.map(advert => (
+              {filteredAdverts.map(advert => (
                 <li key={advert.id}>
                   <Link to={`/adverts/${advert.id}`}>
                     <Advert key={advert.id} advert={advert} />
@@ -52,6 +69,7 @@ const AdvertsPage = () => {
                 </li>
               ))}
             </ul>
+          </>
           ) : (
             <EmptyList />
           )}
