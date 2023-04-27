@@ -9,7 +9,7 @@ import { useRef } from 'react';
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Be the first one!</p>
-    <Button as={Link} variant="primary" to="/tweets/new">
+    <Button as={Link} variant="primary" to="/adverts/new">
       Create advert
     </Button>
   </div>

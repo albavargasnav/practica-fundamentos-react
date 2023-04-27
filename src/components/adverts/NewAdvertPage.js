@@ -19,7 +19,7 @@ const NewAdvertPage = () => {
               placeholder="Hey! What's up!"
             />
             <div className="newAdvertPage-footer">
-              <span className="newTweetPage-characters">...characters</span>
+              <span className="newAdvertPage-characters">...characters</span>
               <Button
                 type="submit"
                 className="newAdvertPage-submit"
