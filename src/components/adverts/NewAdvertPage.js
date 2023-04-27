@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
@@ -20,7 +20,7 @@ const fib = function (n) {
 };
 
 const HeavyComponent = ({ value }) => {
-  const result = fib(value);
+  const result = useMemo(() => fib(value), [value]);
 
   return (
     <div>
@@ -57,6 +57,15 @@ const NewAdvertPage = () => {
   const isDisabled = isLoading || name.length < MIN_CHARACTERS;
   const characters = `${name.length} / ${MAX_CHARACTERS} characters`;
 
+  ///----------------MEMO REVISAR
+  // const objProperty = useMemo(() => {
+  //   return { isLoading };
+  // }, [isLoading]);
+
+    const objProperty = { isLoading };
+
+  ///-----end-----------MEMO REVISAR
+
   return (
     <Layout title="What are you thinking?">
       <div className="newAdvertPage bordered">
@@ -74,7 +83,7 @@ const NewAdvertPage = () => {
               maxLength={MAX_CHARACTERS}
             />
             <div className="newAdvertPage-footer">
-              <span className="newAdvertPage-characters">{characters}</span>
+            <span className="newAdvertPage-characters">{characters}</span>
               <Button
                 type="submit"
                 className="newAdvertPage-submit"
@@ -85,7 +94,7 @@ const NewAdvertPage = () => {
               </Button>
             </div>
           </form>
-          <MemoizedHeavyComponent value={37} />
+          <HeavyComponent value={37} objProperty={objProperty} />
         </div>
       </div>
     </Layout>
