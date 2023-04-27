@@ -7,7 +7,6 @@ export const getLatestAdverts = () => {
   return client.get(url);
 };
 
-
 export const getAdvert = advertId => {
   // const url = advertsUrl + '/' + advertId
   const url = `${advertsUrl}/${advertId}`
