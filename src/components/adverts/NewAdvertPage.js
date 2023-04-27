@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
@@ -20,7 +20,7 @@ const fib = function (n) {
 };
 
 const HeavyComponent = ({ value }) => {
-  const result = useMemo(() => fib(value), [value]);
+  const result = fib(value);
 
   return (
     <div>
@@ -57,12 +57,13 @@ const NewAdvertPage = () => {
   const isDisabled = isLoading || name.length < MIN_CHARACTERS;
   const characters = `${name.length} / ${MAX_CHARACTERS} characters`;
 
-  ///----------------MEMO REVISAR
-  // const objProperty = useMemo(() => {
-  //   return { isLoading };
-  // }, [isLoading]);
+  const objProperty = useMemo(() => {
+    return { isLoading };
+  }, [isLoading]);
 
-    const objProperty = { isLoading };
+  const funcProperty = useCallback(() => {
+    console.log('isLoading', isLoading);
+  }, [isLoading]);
 
   ///-----end-----------MEMO REVISAR
 
@@ -94,7 +95,11 @@ const NewAdvertPage = () => {
               </Button>
             </div>
           </form>
-          <HeavyComponent value={37} objProperty={objProperty} />
+          <MemoizedHeavyComponent
+            value={37}
+            objProperty={objProperty}
+            funcProperty={funcProperty}
+          />
         </div>
       </div>
     </Layout>
