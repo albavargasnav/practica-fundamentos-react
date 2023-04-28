@@ -42,7 +42,7 @@ const AdvertsPage = () => {
   );
 
   return (
-    <Layout title="Lista de anunciossss">
+    <Layout title="Lista de anuncios">
       {isLoading ? (
         <div>Loading...</div>
       ) : (
