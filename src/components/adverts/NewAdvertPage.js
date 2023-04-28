@@ -68,11 +68,8 @@ const NewAdvertPage = () => {
   ///-----end-----------MEMO REVISAR
 
   return (
-    <Layout title="What are you thinking?">
+    <Layout title="Crea tu anuncio">
       <div className="newAdvertPage bordered">
-        <div className="left">
-          <Photo />
-        </div>
         <div className="right">
           <form onSubmit={handleSubmit}>
             <Textarea
