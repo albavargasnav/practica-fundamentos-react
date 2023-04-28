@@ -8,9 +8,9 @@ import { useRef } from 'react';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
-    <p>Be the first one!</p>
+    <p>There are no published adverts. Create your advert!</p>
     <Button as={Link} variant="primary" to="/adverts/new">
-      Create advert
+      Create Advert
     </Button>
   </div>
 );
@@ -42,7 +42,7 @@ const AdvertsPage = () => {
   );
 
   return (
-    <Layout title="What's going on...">
+    <Layout title="Lista de anunciossss">
       {isLoading ? (
         <div>Loading...</div>
       ) : (
