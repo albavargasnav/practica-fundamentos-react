@@ -71,7 +71,7 @@ const AdvertsPage = () => {
                   <select value={saleFilter ?? 'null'} onChange={handleSaleFilterChange}>
                     <option value="null">Todo</option>
                     <option value="true">Venta</option>
-                    <option value="false">Search</option>
+                    <option value="false">Busqueda</option>
                   </select>
               </label>
             </div>
