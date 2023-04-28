@@ -2,12 +2,14 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import { getAdvert } from './service';
+import placeholderImage from '../../assets/placeholder.jpg';
 
 const AdvertPage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [advert, setAdvert] = useState(null);
+  const advertSale = advert && advert.sale ? 'En venta' : 'Se busca';
 
   useEffect(() => {
     getAdvert(params.Id)
@@ -20,7 +22,7 @@ const AdvertPage = () => {
       });
   }, [params.Id, navigate]);
 
-  const advertSale = advert.sale ? 'En venta' : 'Se busca';
+  
 
   // if (error?.status === 404) {
   //   return <Navigate to="/404" />;
@@ -31,9 +33,18 @@ const AdvertPage = () => {
         <div>
           <div className="advert-header">
         <span className="advert-name">{advert.name}</span>
-      <div className="advert-username">Sale: {advert.tags}</div>
+      <div className="advert-username">Sale: {advertSale}</div>
       <div className="advert-username">Price: {advert.price}€</div>
-      <div className="advert-username">Tags: {advertSale}</div>
+      <div className="advert-username">Tags: {advert.tags}</div>
+
+      <div className="advert-photo">
+              {advert.photo ? (
+                <img src={advert.photo} alt={advert.name} />
+              ) : (
+                <img src={placeholderImage} alt="Foto Placeholder" />
+              )}
+            </div>
+
           <span className="advert-separator">·</span>
         </div>
         </div>}
