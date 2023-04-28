@@ -20,6 +20,7 @@ const AdvertsPage = () => {
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
+  const [saleFilter, setSaleFilter] = useState(null);
 
   useEffect(() => {
     isMounted.current = true;
@@ -38,8 +39,14 @@ const AdvertsPage = () => {
   }, []);
 
   const filteredAdverts = adverts.filter(advert =>
-    (advert.name ?? '').toUpperCase().startsWith(query.toUpperCase()),
+    (advert.name ?? '').toUpperCase().startsWith(query.toUpperCase())
+    && (saleFilter === null || advert.sale === saleFilter)
   );
+
+  const handleSaleFilterChange = event => {
+    const selectedSale = event.target.value === 'null' ? null : event.target.value === 'true';
+    setSaleFilter(selectedSale);
+  };
 
   return (
     <Layout title="Lista de anuncios">
@@ -51,13 +58,21 @@ const AdvertsPage = () => {
             <>
             <div>
               <label>
-                Search:{' '}
+                Search name:{' '}
                 <input
                   type="text"
                   style={{ borderWidth: 1 }}
                   value={query}
                   onChange={event => setQuery(event.target.value)}
                 />
+              </label>
+              <label>
+                  Filter by sale:{' '}
+                  <select value={saleFilter ?? 'null'} onChange={handleSaleFilterChange}>
+                    <option value="null">Todo</option>
+                    <option value="true">Venta</option>
+                    <option value="false">Search</option>
+                  </select>
               </label>
             </div>
             <ul>
