@@ -1,7 +1,7 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
-import { getAdvert } from './service';
+import { getAdvert, deleteAdvert } from './service';
 import placeholderImage from '../../assets/placeholder.jpg';
 
 const AdvertPage = () => {
@@ -22,11 +22,25 @@ const AdvertPage = () => {
       });
   }, [params.Id, navigate]);
 
+  const handleDeleteAdvert = () => {
+    const confirmed = window.confirm('¿Estás seguro de que quieres eliminar este anuncio?');
+    if (confirmed) {
+      deleteAdvert(advert.id)
+        .then(() => {
+          navigate('/');
+        })
+        .catch(error => {
+          console.error(error);
+          setError('No se pudo eliminar el anuncio');
+        });
+    }
+  };
   
+  if (error?.status === 404) {
+    return <Navigate to="/404" />;
+  }
 
-  // if (error?.status === 404) {
-  //   return <Navigate to="/404" />;
-  // }
+
   return (
     <Layout title="Advert Page">
       {advert && advert.id && 
@@ -47,6 +61,8 @@ const AdvertPage = () => {
 
           <span className="advert-separator">·</span>
         </div>
+
+        <button onClick={handleDeleteAdvert}>Borrar Anuncio</button>
         </div>}
     </Layout>
   );
