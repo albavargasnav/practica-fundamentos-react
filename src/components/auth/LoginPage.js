@@ -26,6 +26,8 @@ function LoginPage() {
         password: '',
     });
 
+    const [rememberMe, setRememberMe] = useState(false); // Agregamos este estado para recordar la opción "remember me"
+
     const resetError = () => {
       setError(null);
     };
@@ -35,7 +37,7 @@ function LoginPage() {
     resetError();
     setIsLoading(true);
     try {
-      await login(credentials);
+      await login(credentials, rememberMe);
       setIsLoading(false);
       // Logged in
       onLogin();
@@ -54,6 +56,10 @@ function LoginPage() {
       ...credentials,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleRememberMeChange = event => {
+    setRememberMe(event.target.checked); // Actualizamos el estado "rememberMe" según el valor del checkbox
   };
 
   const buttonDisabled =
@@ -97,6 +103,12 @@ function LoginPage() {
             console.log(event.target.files[0]);
           }}
         /> */}
+
+          <div className="rememberMe">
+          <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleRememberMeChange} />
+          <label htmlFor="rememberMe">Remember me</label>
+        </div>
+        
       </form>
       {error && (
         <div onClick={resetError} className="loginPage-error">
