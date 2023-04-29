@@ -6,7 +6,7 @@ import Photo from '../shared/Photo';
 import './Advert.css';
 
 const Advert = ({advert}) => {
-  const advertSale = advert.sale ? 'En venta' : 'Se busca';
+  const advertSale = advert.sale ? 'Sell' : 'Buy';
   return (
     <article className="advert bordered">
       <div className="left">
@@ -14,11 +14,10 @@ const Advert = ({advert}) => {
       </div>
       <div className="right">
         <div className="advert-header">
-        <span className="advert-name">{advert.name}</span>
-      <div className="advert-username">Sale: {advertSale}</div>
-      <div className="advert-username">Price: {advert.price}€</div>
-      <div className="advert-username">Tags: {advert.tags}</div>
-          <span className="advert-separator">·</span>
+        <div className="advert-name">{advert.name}</div>
+      <div className="advert-username"><b>Sale:</b> {advertSale}</div>
+      <div className="advert-username"><b>Price:</b> {advert.price}€</div>
+      <div className="advert-username"><b>Tags:</b> {advert.tags}</div>
         </div>
       </div>
     </article>
