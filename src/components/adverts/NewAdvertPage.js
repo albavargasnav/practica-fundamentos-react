@@ -115,13 +115,13 @@ const NewAdvertPage = () => {
             
           <label>
         Nombre:
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input type="text" value={name} onChange={handleNameChange} required />
       </label>
 
       <br />
       <label>
         Compra-venta:
-        <select value={sale.toString()} onChange={handleSaleChange}>
+        <select value={sale.toString()} onChange={handleSaleChange} required>
           <option value="true">Compra</option>
           <option value="false">Venta</option>
         </select>
@@ -129,7 +129,7 @@ const NewAdvertPage = () => {
       <br />
   <label>
     Tags:
-    <select multiple value={tags} onChange={handleTagsChange}>
+    <select multiple value={tags} onChange={handleTagsChange} required>
     {obtainTags.map((tag) => (
           <option value={tag}>
             {tag}
@@ -141,7 +141,7 @@ const NewAdvertPage = () => {
       <br />
       <label>
         Precio:
-        <input type="number" value={price} onChange={handlePriceChange} />
+        <input type="number" value={price} onChange={handlePriceChange} required />
       </label>
       <br />
       <label>
