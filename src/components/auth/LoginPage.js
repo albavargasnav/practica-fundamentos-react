@@ -104,11 +104,10 @@ function LoginPage() {
           }}
         /> */}
 
-          <div className="rememberMe">
+        <div className="rememberMe">
           <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleRememberMeChange} />
           <label htmlFor="rememberMe">Remember me</label>
         </div>
-        
       </form>
       {error && (
         <div onClick={resetError} className="loginPage-error">

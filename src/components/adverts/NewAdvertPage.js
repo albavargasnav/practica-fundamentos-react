@@ -1,12 +1,12 @@
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState, useEffect } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
-import Photo from '../shared/Photo';
-import Textarea from '../shared/Textarea';
+
 
 import './NewAdvertPage.css';
-import { createAdvert } from './service';
+import { createAdvert, getTags } from './service';
 import { useNavigate } from 'react-router-dom';
+
 
 const MIN_CHARACTERS = 5;
 const MAX_CHARACTERS = 140;
@@ -35,16 +35,56 @@ const NewAdvertPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
+  const [sale, setSale] = useState(false);
+  const [tags, setTags] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [photo, setPhoto] = useState(null);
+  const [obtainTags, setObtainTags] = useState([]);
+  
+  useEffect(() => {
+    async function fetchData() {
+      const tags = await getTags();
+      console.log(tags);
+      setObtainTags(tags);
+    }
+      fetchData();
+    }, []);
 
-  const handleChange = event => {
+
+  const handleNameChange = (event) => {
     setName(event.target.value);
+  };
+
+  const handleSaleChange = (event) => {
+    setSale(event.target.value === 'true');
+  };
+
+  const handleTagsChange = (event) => {
+    const selectedTags = Array.from(event.target.selectedOptions, (option) => option.value);
+    setTags(selectedTags);
+  };
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    setPhoto(file || '');
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      const advert = await createAdvert({ name });
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('sale', sale);
+      formData.append('tags', tags);
+      formData.append('price', price);
+      formData.append('photo', photo);
+      const advert = await createAdvert(formData);
+      
       setIsLoading(false);
       navigate(`/adverts/${advert.id}`);
     } catch (error) {
@@ -72,14 +112,44 @@ const NewAdvertPage = () => {
       <div className="newAdvertPage bordered">
         <div className="right">
           <form onSubmit={handleSubmit}>
-            <Textarea
-              name="name"
-              className="newAdvertPage-textarea"
-              placeholder="Hey! What's up!"
-              onChange={handleChange}
-              value={name}
-              maxLength={MAX_CHARACTERS}
-            />
+            
+          <label>
+        Nombre:
+        <input type="text" value={name} onChange={handleNameChange} />
+      </label>
+
+      <br />
+      <label>
+        Compra-venta:
+        <select value={sale.toString()} onChange={handleSaleChange}>
+          <option value="true">Compra</option>
+          <option value="false">Venta</option>
+        </select>
+      </label>
+      <br />
+  <label>
+    Tags:
+    <select multiple value={tags} onChange={handleTagsChange}>
+    {obtainTags.map((tag) => (
+          <option value={tag}>
+            {tag}
+        </option>
+      ))}
+    </select>
+  </label>
+<br />
+      <br />
+      <label>
+        Precio:
+        <input type="number" value={price} onChange={handlePriceChange} />
+      </label>
+      <br />
+      <label>
+        Foto:
+        <input type="file" name="photo" onChange={handlePhotoChange} />
+      </label>
+      <br />
+
             <div className="newAdvertPage-footer">
             <span className="newAdvertPage-characters">{characters}</span>
               <Button

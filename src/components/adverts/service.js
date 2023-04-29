@@ -22,3 +22,8 @@ export const deleteAdvert = advertId => {
   const url = `${advertsUrl}/${advertId}`;
   return client.delete(url);
 };
+
+export const getTags = () => {
+  const url = `${advertsUrl}/tags`;
+  return client.get(url);
+};
