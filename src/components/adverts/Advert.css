@@ -34,3 +34,9 @@
   .advert-separator {
     padding: 0 5px;
   }
+
+  .containerFilters {
+    margin: 15px 10px;
+    display: flex;
+    justify-content: space-around;
+  }

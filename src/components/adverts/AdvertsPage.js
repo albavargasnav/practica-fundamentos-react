@@ -5,6 +5,7 @@ import Layout from '../layout/Layout';
 import Advert from './Advert';
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
+import './Advert.css'
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
@@ -56,8 +57,8 @@ const AdvertsPage = () => {
         <div>
           {!!adverts.length ? (
             <>
-            <div>
-              <label>
+            <div className='containerFilters'>
+              <label for="name">
                 Search name:{' '}
                 <input
                   type="text"
@@ -68,10 +69,10 @@ const AdvertsPage = () => {
               </label>
               <label>
                   Filter by sale:{' '}
-                  <select value={saleFilter ?? 'null'} onChange={handleSaleFilterChange}>
-                    <option value="null">Todo</option>
-                    <option value="true">Venta</option>
-                    <option value="false">Busqueda</option>
+                  <select value={saleFilter ?? 'null'} onChange={handleSaleFilterChange} style={{ borderWidth: 1 }}>
+                    <option value="null">All</option>
+                    <option value="true">Sell</option>
+                    <option value="false">Buy</option>
                   </select>
               </label>
             </div>
