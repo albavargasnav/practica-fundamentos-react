@@ -33,6 +33,7 @@
   }
   
   .formField:focus-within .formField-label {
-    color: rgb(29, 161, 242);
-    border-color: rgb(29, 161, 242);
+    font-weight: bold;
+    color: rgb(43, 156, 128);
+    border-color: rgb(43, 156, 128);
   }

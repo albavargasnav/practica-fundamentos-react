@@ -72,7 +72,7 @@ function LoginPage() {
       <FormField
           type="text"
           name="email"
-          label="phone, email or username"
+          label="Email"
           className="loginForm-field"
           onChange={handleChange}
           value={credentials.username}
@@ -86,6 +86,11 @@ function LoginPage() {
           onChange={handleChange}
           value={credentials.password}
         />
+
+        <div className="rememberMe">
+                  <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleRememberMeChange} />
+                  <label htmlFor="rememberMe">Remember me</label>
+                </div>
          <Button
           type="submit"
           variant="primary"
@@ -94,20 +99,7 @@ function LoginPage() {
         >
           Log in
         </Button>
-         {/* <FormField
-          type="file"
-          name="photo"
-          label="password"
-          className="loginForm-field"
-          onChange={event => {
-            console.log(event.target.files[0]);
-          }}
-        /> */}
-
-        <div className="rememberMe">
-          <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleRememberMeChange} />
-          <label htmlFor="rememberMe">Remember me</label>
-        </div>
+        
       </form>
       {error && (
         <div onClick={resetError} className="loginPage-error">

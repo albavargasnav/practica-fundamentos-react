@@ -1,6 +1,6 @@
 import Button from '../shared/Button';
 
-import logo, { ReactComponent as Icon } from '../../assets/pageicon.svg';
+import { ReactComponent as Icon } from '../../assets/pageicon.svg';
 import { logout } from '../auth/service';
 import classNames from 'classnames';
 import './Header.css';
@@ -18,18 +18,15 @@ const Header = ({ className }) => {
     <header className={classNames('header', className)}>
      <Link to="/">
         <div className="header-logo">
-          {/* <img src={logo} alt="advert-react" /> */}
-          <Icon width="32" height="32" />
+          <Icon width="45" height="45" />
         </div>
       </Link>
       <nav className="header-nav">
       <NavLink
           to="/adverts/new"
           className="header-nav-item"
-          // className={({ isActive }) => (isActive ? 'selected' : '')}
-          // style={({ isActive }) => (isActive ? { color: 'red' } : null)}
         >
-          New Advert
+          Create new advert
         </NavLink>{' '}
         |
         <NavLink to="/adverts" className="header-nav-item" end>
