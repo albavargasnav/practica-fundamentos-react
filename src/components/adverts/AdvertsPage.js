@@ -22,7 +22,7 @@ const AdvertsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
   const [saleFilter, setSaleFilter] = useState(null);
-
+  
   useEffect(() => {
     isMounted.current = true;
   }, []);
