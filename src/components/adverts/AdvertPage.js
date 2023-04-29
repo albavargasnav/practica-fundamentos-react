@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import { useEffect, useState } from "react";
 import { getAdvert, deleteAdvert } from "./service";
 import placeholderImage from "../../assets/placeholder.jpg";
+import './Advert.css'
 
 const AdvertPage = () => {
   const params = useParams();
@@ -50,21 +51,13 @@ const AdvertPage = () => {
       {advert && advert.id && (
         <div>
           <div className="advert-header">
-            <span className="advert-name">{advert.name}</span>
-            <div className="advert-username">Sale: {advertSale}</div>
-            <div className="advert-username">Price: {advert.price}€</div>
-            <div className="advert-username">Tags: {advert.tags}</div>
+            <div className="advertPage-container">
+              <div className="advert-name">{advert.name}</div>
+              <div className="advert-username"><b>Sale:</b> {advertSale}</div>
+              <div className="advert-username"><b>Price:</b> {advert.price}€</div>
+              <div className="advert-username"><b>Tags:</b> {advert.tags}</div>
 
-            <div className="advert-photo">
-              {advert.photo ? (
-                <img src={advert.photo} alt={advert.name} />
-              ) : (
-                <img src={placeholderImage} alt="Foto Placeholder" />
-              )}
-            </div>
-            <span className="advert-separator">·</span>
-
-            {!showAlert && (
+              {!showAlert && (
               <button
                 className="advert-delete-button"
                 onClick={handleDeleteClick}
@@ -94,6 +87,18 @@ const AdvertPage = () => {
                 </div>
               </div>
             )}
+
+            <div className="advertPagePhoto">
+              {advert.photo ? (
+                <img src={advert.photo} alt={advert.name} />
+              ) : (
+                <img src={placeholderImage} alt="Foto Placeholder" />
+              )}
+            </div>
+
+           
+
+          </div>
           </div>
         </div>
       )}

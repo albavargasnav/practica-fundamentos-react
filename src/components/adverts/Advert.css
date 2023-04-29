@@ -43,3 +43,27 @@
     display: flex;
     justify-content: space-around;
   }
+
+  .advertPage-container {
+    padding: 20px;
+  }
+
+  .advertPagePhoto img {
+    padding-top: 25px;
+    max-width: 350px;
+  }
+
+  .advert-delete-button {
+    margin-top: 20px;
+    color: red;
+  }
+
+  .advert-delete-alert-message {
+    margin-top: 20px;
+  }
+
+  .advert-delete-alert-confirm {
+    margin-top: 10px;
+    margin-right: 20px;
+    color: red;
+  }
