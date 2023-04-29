@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 
@@ -9,27 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const MIN_CHARACTERS = 5;
-const MAX_CHARACTERS = 140;
-
-
-//--------------revisar despues si utilizarlo 
-const fib = function (n) {
-  if (n <= 1) return n;
-
-  return fib(n - 1) + fib(n - 2);
-};
-
-const HeavyComponent = ({ value }) => {
-  const result = fib(value);
-
-  return (
-    <div>
-      Fibonacci({value}) = {result}
-    </div>
-  );
-};
-const MemoizedHeavyComponent = memo(HeavyComponent);
-//------end------revisar despues si utilizarlo  incluye quitar memorized abajo del form--linea 88--
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
@@ -95,17 +74,8 @@ const NewAdvertPage = () => {
   };
 
   const isDisabled = isLoading || name.length < MIN_CHARACTERS;
-  const characters = `${name.length} / ${MAX_CHARACTERS} characters`;
 
-  const objProperty = useMemo(() => {
-    return { isLoading };
-  }, [isLoading]);
 
-  const funcProperty = useCallback(() => {
-    console.log('isLoading', isLoading);
-  }, [isLoading]);
-
-  ///-----end-----------MEMO REVISAR
 
   return (
     <Layout title="Crea tu anuncio">
@@ -114,59 +84,52 @@ const NewAdvertPage = () => {
           <form onSubmit={handleSubmit}>
             
           <label>
-        Nombre:
-        <input type="text" value={name} onChange={handleNameChange} required />
+            <b>Name:</b>
+        <input style={{ borderWidth: 1, marginBottom: '20px', marginLeft: '10px', marginTop: '20px'}} type="text" value={name} onChange={handleNameChange} required />
       </label>
 
       <br />
       <label>
-        Compra-venta:
-        <select value={sale.toString()} onChange={handleSaleChange} required>
-          <option value="true">Compra</option>
-          <option value="false">Venta</option>
+      <b>Buy / Sell </b>
+        <select style={{ borderWidth: 1, marginBottom: '20px', marginLeft: '10px'}} value={sale.toString()} onChange={handleSaleChange} required>
+          <option value="true">Buy</option>
+          <option value="false">Sell</option>
         </select>
       </label>
       <br />
-  <label>
-    Tags:
-    <select multiple value={tags} onChange={handleTagsChange} required>
+  <div className='createAdvertContainer' style={{ display: 'flex', flexDirection: 'row' }}>
+  <b>Tags: </b>
+    <select style={{ borderWidth: 1, marginLeft: '15px', marginTop: '6px', marginBottom: '20px'}} multiple value={tags} onChange={handleTagsChange} required>
     {obtainTags.map((tag) => (
           <option value={tag}>
             {tag}
         </option>
       ))}
     </select>
-  </label>
-<br />
-      <br />
-      <label>
-        Precio:
-        <input type="number" value={price} onChange={handlePriceChange} required />
+  </div>
+      <label >
+        <b>Price:</b>
+        <input type="number" value={price} onChange={handlePriceChange} style={{ borderWidth: 1, marginBottom: '20px', marginLeft: '10px'}} required min="0"/>
       </label>
       <br />
       <label>
-        Foto:
-        <input type="file" name="photo" onChange={handlePhotoChange} />
+        <b>Photo</b>
+        <input type="file" name="photo" onChange={handlePhotoChange} style={{ marginLeft: '10px'}} />
       </label>
       <br />
 
             <div className="newAdvertPage-footer">
-            <span className="newAdvertPage-characters">{characters}</span>
               <Button
                 type="submit"
                 className="newAdvertPage-submit"
                 variant="primary"
                 disabled={isDisabled}
               >
-                Let's go!
+                Create Advert
               </Button>
             </div>
           </form>
-          <MemoizedHeavyComponent
-            value={37}
-            objProperty={objProperty}
-            funcProperty={funcProperty}
-          />
+          
         </div>
       </div>
     </Layout>
