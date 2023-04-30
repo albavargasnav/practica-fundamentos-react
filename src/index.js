@@ -16,9 +16,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <AuthContextProvider isInitiallyLogged={!!accessToken}>
+      <AuthContextProvider isInitiallyLogged={!!accessToken}>
         <App />
       </AuthContextProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

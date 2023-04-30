@@ -22,7 +22,7 @@ const AdvertsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
   const [saleFilter, setSaleFilter] = useState(null);
-  
+
   useEffect(() => {
     isMounted.current = true;
   }, []);
@@ -58,34 +58,34 @@ const AdvertsPage = () => {
           {!!adverts.length ? (
             <>
             <div className='containerFilters'>
-              <label for="name">
+                <label for="name">
                 Search name:{' '}
-                <input
-                  type="text"
-                  style={{ borderWidth: 1 }}
-                  value={query}
+                  <input
+                    type="text"
+                    style={{ borderWidth: 1 }}
+                    value={query}
                   onChange={event => setQuery(event.target.value)}
-                />
-              </label>
-              <label>
+                  />
+                </label>
+                <label>
                   Filter by sale:{' '}
                   <select value={saleFilter ?? 'null'} onChange={handleSaleFilterChange} style={{ borderWidth: 1 }}>
                     <option value="null">All</option>
                     <option value="true">Sell</option>
                     <option value="false">Buy</option>
                   </select>
-              </label>
-            </div>
-            <ul>
+                </label>
+              </div>
+              <ul>
               {filteredAdverts.map(advert => (
-                <li key={advert.id}>
-                  <Link to={`/adverts/${advert.id}`}>
-                    <Advert key={advert.id} advert={advert} />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </>
+                  <li key={advert.id}>
+                    <Link to={`/adverts/${advert.id}`}>
+                      <Advert key={advert.id} advert={advert} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
           ) : (
             <EmptyList />
           )}
@@ -94,6 +94,5 @@ const AdvertsPage = () => {
     </Layout>
   );
 };
-
 
 export default AdvertsPage;

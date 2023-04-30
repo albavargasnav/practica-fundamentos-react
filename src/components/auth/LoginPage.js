@@ -21,16 +21,16 @@ function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-    const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState({
         email: '',
         password: '',
-    });
+  });
 
-    const [rememberMe, setRememberMe] = useState(false); // Agregamos este estado para recordar la opción "remember me"
+  const [rememberMe, setRememberMe] = useState(false); // Agregamos este estado para recordar la opción "remember me"
 
-    const resetError = () => {
-      setError(null);
-    };
+  const resetError = () => {
+    setError(null);
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -63,13 +63,13 @@ function LoginPage() {
   };
 
   const buttonDisabled =
-  isLoading || !credentials.email || !credentials.password;
+    isLoading || !credentials.email || !credentials.password;
 
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Adverts</h1>
       <form onSubmit={handleSubmit}>
-      <FormField
+        <FormField
           type="text"
           name="email"
           label="Email"
@@ -88,10 +88,16 @@ function LoginPage() {
         />
 
         <div className="rememberMe">
-                  <input type="checkbox" id="rememberMe" name="rememberMe" checked={rememberMe} onChange={handleRememberMeChange} />
-                  <label htmlFor="rememberMe">Remember me</label>
-                </div>
-         <Button
+          <input
+            type="checkbox"
+            id="rememberMe"
+            name="rememberMe"
+            checked={rememberMe}
+            onChange={handleRememberMeChange}
+          />
+          <label htmlFor="rememberMe">Remember me</label>
+        </div>
+        <Button
           type="submit"
           variant="primary"
           className="loginForm-submit"
@@ -99,7 +105,6 @@ function LoginPage() {
         >
           Log in
         </Button>
-        
       </form>
       {error && (
         <div onClick={resetError} className="loginPage-error">

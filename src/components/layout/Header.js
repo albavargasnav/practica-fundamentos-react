@@ -1,11 +1,11 @@
 import Button from '../shared/Button';
 
-import { ReactComponent as Icon } from '../../assets/pageicon.svg';
-import { logout } from '../auth/service';
-import classNames from 'classnames';
-import './Header.css';
-import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../auth/context';
+import { ReactComponent as Icon } from "../../assets/pageicon.svg";
+import { logout } from "../auth/service";
+import classNames from "classnames";
+import "./Header.css";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../auth/context";
 
 const Header = ({ className }) => {
   const { isLogged, onLogout } = useAuth();
@@ -16,33 +16,30 @@ const Header = ({ className }) => {
 
   return (
     <header className={classNames('header', className)}>
-     <Link to="/">
+      <Link to="/">
         <div className="header-logo">
           <Icon width="45" height="45" />
         </div>
       </Link>
       <nav className="header-nav">
-      <NavLink
-          to="/adverts/new"
-          className="header-nav-item"
-        >
+        <NavLink to="/adverts/new" className="header-nav-item">
           Create new advert
         </NavLink>{' '}
         |
         <NavLink to="/adverts" className="header-nav-item" end>
           See latest adverts
         </NavLink>
-      {isLogged ? (
+        {isLogged ? (
           <Button onClick={handleLogoutClick} className="header-button">
-          Logout
-        </Button>
+            Logout
+          </Button>
         ) : (
           <Button
-          as={Link}
-          variant="primary"
-          className="header-button"
-          to="/login"
-        >
+            as={Link}
+            variant="primary"
+            className="header-button"
+            to="/login"
+          >
             Login
           </Button>
         )}

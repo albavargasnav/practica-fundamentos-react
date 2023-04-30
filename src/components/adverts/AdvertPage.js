@@ -53,52 +53,55 @@ const AdvertPage = () => {
           <div className="advert-header">
             <div className="advertPage-container">
               <div className="advert-name">{advert.name}</div>
-              <div className="advert-username"><b>Sale:</b> {advertSale}</div>
-              <div className="advert-username"><b>Price:</b> {advert.price}€</div>
-              <div className="advert-username"><b>Tags:</b> {advert.tags}</div>
+              <div className="advert-username">
+                <b>Sale:</b> {advertSale}
+              </div>
+              <div className="advert-username">
+                <b>Price:</b> {advert.price}€
+              </div>
+              <div className="advert-username">
+                <b>Tags:</b> {advert.tags}
+              </div>
 
               {!showAlert && (
-              <button
-                className="advert-delete-button"
-                onClick={handleDeleteClick}
-              >
-                Borrar anuncio
-              </button>
-            )}
-
-            {showAlert && (
-              <div className="advert-delete-alert">
-                <div className="advert-delete-alert-message">
-                  ¿Estás seguro de que quieres eliminar el anuncio?
-                </div>
-                <div className="advert-delete-alert-buttons">
-                  <button
-                    className="advert-delete-alert-confirm"
-                    onClick={handleAlertConfirm}
-                  >
-                    Aceptar
-                  </button>
-                  <button
-                    className="advert-delete-alert-cancel"
-                    onClick={handleAlertCancel}
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <div className="advertPagePhoto">
-              {advert.photo ? (
-                <img src={advert.photo} alt={advert.name} />
-              ) : (
-                <img src={placeholderImage} alt="Foto Placeholder" />
+                <button
+                  className="advert-delete-button"
+                  onClick={handleDeleteClick}
+                >
+                  Borrar anuncio
+                </button>
               )}
+
+              {showAlert && (
+                <div className="advert-delete-alert">
+                  <div className="advert-delete-alert-message">
+                    ¿Estás seguro de que quieres eliminar el anuncio?
+                  </div>
+                  <div className="advert-delete-alert-buttons">
+                    <button
+                      className="advert-delete-alert-confirm"
+                      onClick={handleAlertConfirm}
+                    >
+                      Aceptar
+                    </button>
+                    <button
+                      className="advert-delete-alert-cancel"
+                      onClick={handleAlertCancel}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div className="advertPagePhoto">
+                {advert.photo ? (
+                  <img src={advert.photo} alt={advert.name} />
+                ) : (
+                  <img src={placeholderImage} alt="Foto Placeholder" />
+                )}
+              </div>
             </div>
-
-           
-
-          </div>
           </div>
         </div>
       )}
