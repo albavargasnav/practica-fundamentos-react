@@ -10,7 +10,7 @@ const LoginPage = lazy(() => import('./components/auth/LoginPage'));
 
 function App() {
   return (
-    <Suspense fallback={<div>Accede al login a traves del boton superior</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className="app">
         <Routes>
           <Route path="/login" element={<LoginPage />} />

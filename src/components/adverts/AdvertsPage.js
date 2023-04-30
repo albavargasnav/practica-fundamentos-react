@@ -52,7 +52,7 @@ const AdvertsPage = () => {
   return (
     <Layout title="Lista de anuncios">
       {isLoading ? (
-        <div>Loading...</div>
+        <div>Accede a tu usuario través del botón superior</div>
       ) : (
         <div>
           {!!adverts.length ? (
