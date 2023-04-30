@@ -49,7 +49,7 @@ const NewAdvertPage = () => {
 
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
-    setPhoto(file || '');
+    setPhoto(file || null);
   };
 
   const handleSubmit = async event => {
@@ -61,7 +61,9 @@ const NewAdvertPage = () => {
       formData.append('sale', sale);
       formData.append('tags', tags);
       formData.append('price', price);
-      formData.append('photo', photo);
+      if (photo) {
+        formData.append('photo', photo);
+      }
       const advert = await createAdvert(formData);
       
       setIsLoading(false);
