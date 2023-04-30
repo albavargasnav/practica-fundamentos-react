@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ isInitiallyLogged, children }) => {
   };
 
   const authValue = {
-    isLogged, // isLogged: isLogged
+    isLogged,
     onLogout: handleLogout,
     onLogin: handleLogin,
   };

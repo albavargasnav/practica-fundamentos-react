@@ -1,7 +1,4 @@
 import React from 'react';
-//import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-
-//import LikeButton from './LikeButton';
 import Photo from '../shared/Photo';
 import './Advert.css';
 

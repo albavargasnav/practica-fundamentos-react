@@ -1,7 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './context';
 
-
 const RequireAuth = ({ children }) => {
   const { isLogged } = useAuth();
   const location = useLocation();

@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-
 import './Textarea.css';
 
 const Textarea = ({ className, ...props }) => {

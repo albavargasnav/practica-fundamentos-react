@@ -26,7 +26,7 @@ function LoginPage() {
         password: '',
   });
 
-  const [rememberMe, setRememberMe] = useState(false); // Agregamos este estado para recordar la opción "remember me"
+  const [rememberMe, setRememberMe] = useState(false);
 
   const resetError = () => {
     setError(null);
@@ -39,9 +39,7 @@ function LoginPage() {
     try {
       await login(credentials, rememberMe);
       setIsLoading(false);
-      // Logged in
       onLogin();
-      // Redirect to pathname
       const to = location.state?.from?.pathname || '/';
       navigate(to);
     } catch (error) {
@@ -59,7 +57,7 @@ function LoginPage() {
   };
 
   const handleRememberMeChange = event => {
-    setRememberMe(event.target.checked); // Actualizamos el estado "rememberMe" según el valor del checkbox
+    setRememberMe(event.target.checked);
   };
 
   const buttonDisabled =

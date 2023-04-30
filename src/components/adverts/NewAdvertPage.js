@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
-
-
 import './NewAdvertPage.css';
 import { createAdvert, getTags } from './service';
 import { useNavigate } from 'react-router-dom';
-
 
 const MIN_CHARACTERS = 5;
 

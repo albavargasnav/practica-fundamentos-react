@@ -1,5 +1,4 @@
 import Button from '../shared/Button';
-
 import { ReactComponent as Icon } from "../../assets/pageicon.svg";
 import { logout } from "../auth/service";
 import classNames from "classnames";

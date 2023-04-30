@@ -9,7 +9,7 @@ import './Advert.css'
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
-    <p>There are no published adverts. Create your advert!</p>
+    <p>There are no published adverts. Create your advert</p>
     <Button as={Link} variant="primary" to="/adverts/new">
       Create Advert
     </Button>

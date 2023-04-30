@@ -8,7 +8,6 @@ import './App.css';
 
 const LoginPage = lazy(() => import('./components/auth/LoginPage'));
 
-
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
